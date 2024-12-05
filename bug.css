@@ -1,0 +1,25 @@
+The following CSS code snippet demonstrates an uncommon issue related to the specificity of CSS selectors:
+
+```css
+div {
+  color: blue;
+}
+
+.class1, .class2 {
+  color: red;
+}
+
+#id1 {
+  color: green;
+}
+
+div.class1 {
+  color: yellow;
+}
+```
+
+The problem lies in understanding how the browser resolves conflicting styles. While the `div` selector applies to all `div` elements, `div.class1` has higher specificity because of the class selector.  The order doesn't matter in this case, the most specific selector always wins.
+
+If an element has `id1`, `class1` and is also a `div`, `#id1` will take precedence due to the id selector's highest specificity.
+
+This bug becomes difficult to diagnose because it's not an obvious syntax or runtime error; rather, it is a misconception about the CSS cascade and specificity rules.
